@@ -1,0 +1,58 @@
+<mvc:View
+	controllerName="khrapun.pavel.controller.FirstPage"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.f"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns:layout="sap.ui.layout"
+	displayBlock="true">
+<f:DynamicPage id="dynamicPageId" class="sapUiNoContentPadding" showFooter="true">
+			<!-- DynamicPage Title -->
+			<f:title>
+				<f:DynamicPageTitle>
+					<f:heading>
+						<Title text="{i18n>storesListTitle}"/>
+					</f:heading>
+					<f:breadcrumbs>
+						<Breadcrumbs separatorStyle="{/selected}">
+							<Link text="{i18n>storesListTitle}"/>
+						</Breadcrumbs>
+					</f:breadcrumbs>
+				</f:DynamicPageTitle>
+			</f:title>
+			<f:header>
+				<f:DynamicPageHeader pinnable="true">
+					<OverflowToolbar>
+						<SearchField
+							search=".onFilterInvoices"
+							placeholder="{i18n>inputPlaceholder}"
+							width="100%" />
+					</OverflowToolbar>
+				</f:DynamicPageHeader>
+			</f:header>
+			<!-- DynamicPage Footer -->
+			<f:content>
+				<List items="{odata>/Stores}" id="idList">
+					<items>
+						<ObjectListItem
+							title="{odata>Name}"
+							type="Active"
+							press=".onNavPress"
+							number="{odata>FloorArea}"
+							numberUnit=".sqm">
+							<attributes>
+								<ObjectAttribute text="{odata>Address}" />
+							</attributes>
+						</ObjectListItem>
+					</items>
+				</List>
+			</f:content>
+			<f:footer>
+				<OverflowToolbar>
+					<ToolbarSpacer/>
+					<Button type="Accept" text="+ {i18n>createBtn}" press=".onCreateStorePress"/>
+				</OverflowToolbar>
+			</f:footer>
+		</f:DynamicPage>
+</mvc:View>

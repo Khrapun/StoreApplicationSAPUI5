@@ -1,0 +1,87 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "khrapun.pavel",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "khrapun.pavel.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.60",
+			"libs": {
+				"sap.m": {}
+			}
+		},
+
+		"handleValidation": true,
+		
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "khrapun.pavel.i18n.i18n"
+				}
+			}
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "khrapun.pavel.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"async": true
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "firstPage",
+					"target": "firstPage"
+				},
+				{
+					"pattern": "SecondPage${id}",
+					"name": "secondPage",
+					"target": "secondPage"
+				},
+				{
+					"pattern": "ThirdPage${id}",
+					"name": "thirdPage",
+					"target": "thirdPage"
+				}
+			],
+			"targets": {
+				"firstPage": {
+					"viewId": "firstPage",
+					"viewName": "FirstPage"
+				},
+				"secondPage": {
+					"viewId": "secondPage",
+					"viewName": "SecondPage"
+				},
+				"thirdPage": {
+					"viewId": "thirdPage",
+					"viewName": "ThirdPage"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,114 @@
+<mvc:View
+	controllerName="khrapun.pavel.controller.ThirdPage"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.f"
+	xmlns:l="sap.ui.layout"
+	xmlns:fo="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns:layout="sap.ui.layout"
+	displayBlock="true">
+<f:DynamicPage id="dynamicPageId" class="sapUiNoContentPadding" showFooter="true">
+			<f:title>
+				<f:DynamicPageTitle>
+					<f:heading>
+						<Title text="{path:'i18n>productDetailsTitle'}"/>
+					</f:heading>
+					<f:breadcrumbs>
+						<Breadcrumbs separatorStyle="{/selected}">
+							<Link press=".onOpenNavFirst" text="{i18n>storesListTitle}"/>
+							<Link press=".onOpenNavSecond" text="{i18n>storeDetalils}"/>
+							<Link text="{i18n>productDetails}"/>
+						</Breadcrumbs>
+					</f:breadcrumbs>
+				</f:DynamicPageTitle>
+			</f:title>
+			<f:header>
+				<f:DynamicPageHeader pinnable="true">
+					<l:VerticalLayout class="sapUiNoContentPadding">
+						<l:HorizontalLayout class="sapUiTinyMarginBottom" >
+							<l:VerticalLayout class="sapUiNoContentPadding">
+								<l:HorizontalLayout class="sapUiNoContentPadding">
+									<Label text="{i18n>productColumnPrice}:" design="Bold"/>
+									<ObjectNumber number="{odata>Price}" unit="USD"/>
+								</l:HorizontalLayout>
+								<l:HorizontalLayout class="sapUiNoContentPadding" >
+									<Label text="{i18n>productColumnRating}:" design="Bold"/>
+									<Text text="{odata>Rating}"/>
+								</l:HorizontalLayout>
+							</l:VerticalLayout>
+							<l:VerticalLayout class="sapUiLargeMarginBegin">
+								<l:HorizontalLayout class="sapUiNoContentPadding" >
+									<Label text="{i18n>productDetailEstablishDate}:" design="Bold"/>
+									<Text text="{odata>/rel_Store>/Established}"/>
+								</l:HorizontalLayout>
+								<l:HorizontalLayout class="sapUiNoContentPadding" >
+									<Label text="{i18n>productColumnCountry}:" design="Bold"/>
+									<Text text="{odata>MadeIn}"/>
+									<l:HorizontalLayout class="sapUiNoContentPadding" >
+										<Label text="{i18n>ProductsStatus}:" design="Bold"/>
+										<ObjectStatus
+											class="sapUiSmallMarginBottom"
+											text="{odata>Status}"
+											inverted="true"
+											state="{
+												path:'odata>Status',
+												formatter: '.formatter.statusColor'
+											}"/>
+									</l:HorizontalLayout>
+								</l:HorizontalLayout>
+							</l:VerticalLayout>
+						</l:HorizontalLayout>
+						<l:HorizontalLayout class="sapUiNoContentPadding" >
+								<Label text="{i18n>productDetailSpecs}:" design="Bold"/>
+								<Text text="{odata>Specs}"/>
+						</l:HorizontalLayout>
+						<l:HorizontalLayout class="sapUiNoContentPadding" >
+								<Label text="{i18n>productDetailSupplierInfo}:" design="Bold"/>
+								<Text text="{odata>SupplierInfo}"/>
+						</l:HorizontalLayout>
+					</l:VerticalLayout>
+				</f:DynamicPageHeader>
+			</f:header>
+			<!-- DynamicPage Footer -->
+			<f:content>
+			<Panel>
+				<FlexBox
+					height="90px"
+					width="38%"
+					alignItems="Center"
+					justifyContent="SpaceBetween">
+					<items>
+						<Label text="{i18n>commentAuthorName}:" labelFor="authorInput"/>
+						<Input
+							id="authorInput"
+							type="Text"
+							placeholder="{i18n>commentAuthorNamePlaceholder}"
+							showSuggestion="true"
+							width="110%"
+							valueHelpRequest="handleValueHelp">
+						</Input>
+						<Label text="{i18n>commentRating}:" labelFor="productInput"/>
+						<RatingIndicator id="ratingInput" maxValue="5" class="sapUiSmallMarginBottom" value="0" tooltip="Rating Tooltip" />
+					</items>
+				</FlexBox>
+			<FeedInput
+				post="onPost"
+				showIcon="true" 
+				placeholder="{i18n>inputComentPlaceholder}"/>
+			<List
+				id="comments-list"
+				showSeparators="Inner"
+				items="{odata>/ProductComments}" >
+				<FeedListItem
+					sender="{odata>Author}"
+					senderPress="onSenderPress"
+					info="{i18n>commentRating}: {odata>Rating}"
+					timestamp="{i18n>commentDate}: {odata>Posted}"
+					text="{odata>Message}"
+					convertLinksToAnchorTags="All"/>
+			</List>
+			</Panel>
+			</f:content>
+		</f:DynamicPage>
+</mvc:View>

@@ -1,0 +1,95 @@
+<core:FragmentDefinition
+        xmlns="sap.m"
+        xmlns:f="sap.ui.layout.form"
+        xmlns:core="sap.ui.core" >
+    <Dialog
+            id="ProductDialog"
+            title="Create new product">
+        <f:SimpleForm
+                maxContainerCols="1"
+                layout="ResponsiveGridLayout"
+                labelSpanL="12"
+                labelSpanM="12"
+                emptySpanL="0"
+                emptySpanM="0"
+                columnsL="1"
+                columnsM="1">
+            <f:content>
+                <Label text="Name"/>
+                <Input placeholder="Enter name" required="true" 				
+                value="{path: 'Name', 
+					type: 'sap.ui.model.type.String',
+					constraints: {
+					     minLength: 1
+					}}"
+                    valueLiveUpdate="true"/>
+
+                <Label text="Price"/>
+                <Input placeholder="Enter price" required="true" description="USD" 
+                value="{path: 'Price', 
+					type: 'sap.ui.model.type.Integer',
+					constraints: {
+					    minimum: 1
+					}}" 
+				valueLiveUpdate="true"/>
+
+                <Label text="Specs"/>
+                <Input placeholder="Enter product specs" required="true" 
+                value="{path: 'Specs', 
+					type: 'sap.ui.model.type.String',
+					constraints: {
+					     minLength: 1
+					}}" 
+				valueLiveUpdate="true"/>
+
+                <Label text="Rating"/>
+                <Input placeholder="Enter rating 1..5" required="true" 				
+                value="{path: 'Rating', 
+					type: 'sap.ui.model.type.Integer',
+					constraints: {
+                        maximum: 5
+					}}" 
+				valueLiveUpdate="true"/>
+
+                <Label text="Supplier info"/>
+                <Input placeholder="Enter supplier info" required="true"
+                 value="{path: 'SupplierInfo', 
+					type: 'sap.ui.model.type.String',
+					constraints: {
+					     minLength: 1
+					}}" 
+				valueLiveUpdate="true"/>
+
+                <Label text="Made in"/>
+                <Input placeholder="Enter origin country" required="true" 				
+				value="{path: 'MadeIn', 
+					type: 'sap.ui.model.type.String',
+					constraints: {
+					     minLength: 1
+					}}" 
+				valueLiveUpdate="true"/>
+
+                <Label text="Product company name"/>
+                <Input placeholder="Enter manufacturer name:" required="true" 
+                value="{path: 'ProductionCompanyName', 
+					type: 'sap.ui.model.type.String',
+					constraints: {
+					     minLength: 1
+					}}" 
+				valueLiveUpdate="true"/>
+
+                <Label text="Status"/>
+                <Select selectedKey="{Status}">
+                    <core:Item key="OK" text="Ok"/>
+                    <core:Item key="STORAGE" text="Storage"/>
+                    <core:Item key="OUT_OF_STOCK" text="Out of stock"/>
+			    </Select>
+            </f:content>
+        </f:SimpleForm>
+
+        <buttons>
+            <Button text="Create" press="onDialogCreatePress" />
+            <Button text="Close" press="onDialogCancelPress" type="Reject"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,76 @@
+<core:FragmentDefinition
+        xmlns="sap.m"
+        xmlns:f="sap.ui.layout.form"
+        xmlns:core="sap.ui.core" >
+    <Dialog
+            id="StoreDialog"
+            title="Create new store">
+        <f:SimpleForm
+                maxContainerCols="1"
+                layout="ResponsiveGridLayout"
+                labelSpanL="12"
+                labelSpanM="12"
+                emptySpanL="0"
+                emptySpanM="0"
+                columnsL="1"
+                columnsM="1">
+            <f:content>
+                <Label text="Name"/>
+                <Input placeholder="Enter name" required="true" 
+                value="{path: 'Name', 
+					type: 'sap.ui.model.type.String',
+					constraints: {
+					     minLength: 1
+					}}" 
+				valueLiveUpdate="true"/>
+
+                <Label text="Email"/>
+                <Input placeholder="Enter email" required="true" 
+                value="{path: 'Email', 
+					type: 'sap.ui.model.type.String',
+					constraints: {
+					     minLength: 1
+					}}" 
+				valueLiveUpdate="true"/>
+
+                <Label text="Phone Number"/>
+                <Input placeholder="Enter phone number" required="true" 
+                value="{path: 'PhoneNumber', 
+					type: 'sap.ui.model.type.Integer',
+					constraints: {
+					    minimum: 1
+					}}" 
+				valueLiveUpdate="true"/>
+
+                <Label text="Address"/>
+                <Input placeholder="Enter address" required="true" 
+                value="{path: 'Address', 
+					type: 'sap.ui.model.type.String',
+					constraints: {
+					     minLength: 1
+					}}" 
+				valueLiveUpdate="true"/>
+
+                <Label text="Established date"  required="true"/>
+                <DatePicker
+                        id="DP2"
+                        value="{Established}" valueFormat="yyyy-MM-dd" displayFormat="long"
+                        change="handleChange"
+                        class="sapUiSmallMarginBottom"/>
+                <Label text="Floor Area"/>
+                <Input placeholder="Enter floor area (in sq.m)" 
+                required="true" 
+                value="{path: 'FloorArea', 
+					type: 'sap.ui.model.type.Integer',
+					constraints: {
+					    minimum: 1
+					}}" 
+				valueLiveUpdate="true"/>
+            </f:content>
+        </f:SimpleForm>
+        <buttons>
+            <Button text="Create" press="onDialogCreatePress" />
+            <Button text="Close" press="onDialogCancelPress" type="Reject"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>
